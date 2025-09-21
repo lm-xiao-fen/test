@@ -3,30 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>世界时钟</title>
+    <title>UTC时间</title>
 </head>
 <body>
-    <h1>世界时钟（小时:分钟）</h1>
-    
+    <h1>UTC时间</h1>
     <div>
-        <h2>UTC时间</h2>
-        <p id="utc-time">00:00</p>
+        <p id="utc-time" style="font-size: 48px; font-weight: bold;">00:00</p>
     </div>
 
     <script>
-        function updateClocks() {
+        function updateUTCClock() {
             const now = new Date();
             
-            // UTC时间
-            const utcTimeStr = now.toUTCString().split(' ')[4].substring(0, 5);
-            document.getElementById('utc-time').textContent = utcTimeStr;
+            // 获取UTC小时和分钟
+            const hours = now.getUTCHours().toString().padStart(2, '0');
+            const minutes = now.getUTCMinutes().toString().padStart(2, '0');
+            
+            // 更新显示
+            document.getElementById('utc-time').textContent = `${hours}:${minutes}`;
+        }
         
         // 初始更新
-        updateClocks();
+        updateUTCClock();
         
         // 每秒更新一次
-        setInterval(updateClocks, 1000);
+        setInterval(updateUTCClock, 1000);
     </script>
 </body>
 </html>
-
