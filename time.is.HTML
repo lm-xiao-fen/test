@@ -12,21 +12,6 @@
         <h2>UTC时间</h2>
         <p id="utc-time">00:00</p>
     </div>
-    
-    <div>
-        <h2>太平洋时间</h2>
-        <p id="pacific-time">00:00</p>
-    </div>
-    
-    <div>
-        <h2>北京时间</h2>
-        <p id="beijing-time">00:00</p>
-    </div>
-    
-    <div>
-        <h2>纽约时间</h2>
-        <p id="newyork-time">00:00</p>
-    </div>
 
     <script>
         function updateClocks() {
@@ -35,37 +20,6 @@
             // UTC时间
             const utcTimeStr = now.toUTCString().split(' ')[4].substring(0, 5);
             document.getElementById('utc-time').textContent = utcTimeStr;
-            
-            // 太平洋时间 (UTC-8/UTC-7 夏令时)
-            const pacificOptions = { 
-                timeZone: 'America/Los_Angeles',
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit'
-            };
-            const pacificTimeStr = now.toLocaleTimeString('en-US', pacificOptions);
-            document.getElementById('pacific-time').textContent = pacificTimeStr;
-            
-            // 北京时间 (UTC+8)
-            const beijingOptions = { 
-                timeZone: 'Asia/Shanghai',
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit'
-            };
-            const beijingTimeStr = now.toLocaleTimeString('en-US', beijingOptions);
-            document.getElementById('beijing-time').textContent = beijingTimeStr;
-            
-            // 纽约时间 (UTC-5/UTC-4 夏令时)
-            const newyorkOptions = { 
-                timeZone: 'America/New_York',
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit'
-            };
-            const newyorkTimeStr = now.toLocaleTimeString('en-US', newyorkOptions);
-            document.getElementById('newyork-time').textContent = newyorkTimeStr;
-        }
         
         // 初始更新
         updateClocks();
@@ -75,3 +29,4 @@
     </script>
 </body>
 </html>
+
