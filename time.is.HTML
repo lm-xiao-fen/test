@@ -1,9 +1,77 @@
-<html>
-<a href="https://time.is/UTC" id="time_is_link" rel="nofollow"
-style="font-size:36px">UTC时间:</a>
-<span id="UTC_za00" style="font-size:36px"></span>
-<script src="//widget.time.is/t.js"></script>
-<script>
-time_is_widget.init({UTC_za00:{});
-</script>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世界时钟</title>
+</head>
+<body>
+    <h1>世界时钟（小时:分钟）</h1>
+    
+    <div>
+        <h2>UTC时间</h2>
+        <p id="utc-time">00:00</p>
+    </div>
+    
+    <div>
+        <h2>太平洋时间</h2>
+        <p id="pacific-time">00:00</p>
+    </div>
+    
+    <div>
+        <h2>北京时间</h2>
+        <p id="beijing-time">00:00</p>
+    </div>
+    
+    <div>
+        <h2>纽约时间</h2>
+        <p id="newyork-time">00:00</p>
+    </div>
+
+    <script>
+        function updateClocks() {
+            const now = new Date();
+            
+            // UTC时间
+            const utcTimeStr = now.toUTCString().split(' ')[4].substring(0, 5);
+            document.getElementById('utc-time').textContent = utcTimeStr;
+            
+            // 太平洋时间 (UTC-8/UTC-7 夏令时)
+            const pacificOptions = { 
+                timeZone: 'America/Los_Angeles',
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            const pacificTimeStr = now.toLocaleTimeString('en-US', pacificOptions);
+            document.getElementById('pacific-time').textContent = pacificTimeStr;
+            
+            // 北京时间 (UTC+8)
+            const beijingOptions = { 
+                timeZone: 'Asia/Shanghai',
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            const beijingTimeStr = now.toLocaleTimeString('en-US', beijingOptions);
+            document.getElementById('beijing-time').textContent = beijingTimeStr;
+            
+            // 纽约时间 (UTC-5/UTC-4 夏令时)
+            const newyorkOptions = { 
+                timeZone: 'America/New_York',
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            const newyorkTimeStr = now.toLocaleTimeString('en-US', newyorkOptions);
+            document.getElementById('newyork-time').textContent = newyorkTimeStr;
+        }
+        
+        // 初始更新
+        updateClocks();
+        
+        // 每秒更新一次
+        setInterval(updateClocks, 1000);
+    </script>
+</body>
+</html>
